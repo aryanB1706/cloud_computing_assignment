@@ -1,0 +1,20 @@
+# Gitleaks configuration. The default rules are kept; only clearly fake
+# example files and local build directories are allowlisted.
+title = "Command parser project gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Fake placeholders, generated local state, and non-secret fixtures"
+paths = [
+  '''(^|/)k8s/secret\.example\.yaml$''',
+  '''(^|/)\.venv/''',
+  '''(^|/)models/''',
+  '''(^|/)local-storage/''',
+  '''(^|/)node_modules/''',
+  '''(^|/)results/''',
+]
+regexes = [
+  '''EXAMPLE_NOT_A_REAL_(KEY|SECRET)''',
+]

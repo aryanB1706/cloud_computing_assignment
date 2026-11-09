@@ -1,0 +1,40 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Secrets and local configuration
+.env
+.env.local
+*.pem
+kubeconfig*
+
+# Model weights and large artefacts (never commit these)
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.tar.gz
+*.tgz
+
+# Local object-storage backend and downloaded data
+local-storage/
+data/v1/
+data/teacher/
+
+# Local tooling and runtime state (not part of the submission)
+.tools/
+.runtime/
+
+# Reports / editor noise
+.DS_Store
+*.swp
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc

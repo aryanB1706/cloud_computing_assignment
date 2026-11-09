@@ -1,0 +1,2 @@
+Validated 2026-11-06 with PyYAML: all 8 Kubernetes manifest files parsed successfully (15 YAML documents total).
+Docker, k3d, and kubectl binaries are not installed, so API-server validation and cluster execution remain unavailable.

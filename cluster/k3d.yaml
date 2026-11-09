@@ -1,0 +1,36 @@
+# Local Kubernetes cluster for the mini project.
+# Create with: k3d cluster create --config cluster/k3d.yaml
+# Delete with: k3d cluster delete kd-cloud
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: kd-cloud
+servers: 1
+agents: 1
+kubeAPI:
+  host: "127.0.0.1"
+  hostPort: "6445"
+ports:
+  # Traefik ingress: http://localhost:8080 and https://localhost:8443
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
+  - port: 8443:443
+    nodeFilters:
+      - loadbalancer
+  # SeaweedFS S3 is consumed in-cluster; this mapping is for host-side tooling
+  # (storage bootstrap, uploading model artefacts) and diagnostics.
+  - port: 8333:8333
+    nodeFilters:
+      - loadbalancer
+options:
+  k3s:
+    extraArgs:
+      # k3s ships Traefik and metrics-server by default; keep both.
+      # We only disable the bundled servicelb because the load balancer is Traefik.
+      - arg: --disable=servicelb
+        nodeFilters:
+          - server:*
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true

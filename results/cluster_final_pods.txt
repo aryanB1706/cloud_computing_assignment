@@ -1,0 +1,2 @@
+NAME                              READY   STATUS    RESTARTS   AGE   IP           NODE                    NOMINATED NODE   READINESS GATES
+command-parser-588f9bdf4b-5vfln   1/1     Running   0          12s   10.42.0.14   k3d-kd-cloud-server-0   <none>           <none>

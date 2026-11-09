@@ -1,0 +1,14 @@
+# CPU-only PyTorch index first (no CUDA wheels), PyPI as a fallback for the
+# remaining packages. Every direct dependency is pinned.
+--index-url https://download.pytorch.org/whl/cpu
+--extra-index-url https://pypi.org/simple
+torch==2.4.1
+transformers==4.44.2
+tokenizers==0.19.1
+safetensors==0.4.5
+huggingface-hub==0.24.6
+numpy==1.26.4
+fastapi==0.114.2
+uvicorn==0.30.6
+pydantic==2.9.2
+boto3==1.35.24

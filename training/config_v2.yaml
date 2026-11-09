@@ -1,0 +1,39 @@
+# Second model version, used by the rolling-update demonstration in Task 4.
+# Identical to config.yaml except for the seed, epoch count, version and loss file.
+seed: 43
+learning_rate: 5.0e-5
+batch_size: 4
+epochs: 3
+max_seq_len: 256
+libraries:
+  python: "3.12"
+  torch: "2.4.1"
+  transformers: "4.44.2"
+  tokenizers: "0.19.1"
+  safetensors: "0.4.5"
+  huggingface_hub: "0.24.6"
+  numpy: "1.26.4"
+  pyyaml: "6.0.2"
+  boto3: "1.35.24"
+
+model:
+  name: EleutherAI/pythia-70m
+  revision: main
+
+data:
+  bucket: datasets
+  key: v1/train.jsonl
+  max_train_records: 1500
+  validation_key: validation.jsonl
+
+training:
+  gradient_accumulation_steps: 4
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  max_grad_norm: 1.0
+  num_threads: 8
+  logging_steps: 10
+  shuffle: true
+  output_dir: models
+  version: v2
+  loss_csv: training/loss_v2.csv

@@ -1,0 +1,35 @@
+# Traefik (included with k3s) routes /parse to the Service.
+# From the host: curl -X POST http://localhost:8080/parse -d '{"text": "..."}'
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: command-parser
+  namespace: app
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - http:
+        paths:
+          - path: /parse
+            pathType: Prefix
+            backend:
+              service:
+                name: command-parser
+                port:
+                  number: 80
+          - path: /healthz
+            pathType: Prefix
+            backend:
+              service:
+                name: command-parser
+                port:
+                  number: 80
+          - path: /readyz
+            pathType: Prefix
+            backend:
+              service:
+                name: command-parser
+                port:
+                  number: 80

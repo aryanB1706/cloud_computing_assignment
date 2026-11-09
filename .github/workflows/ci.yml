@@ -1,0 +1,151 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+    tags: ["final"]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      bad_model:
+        description: "Run the expected-to-fail gate demo with untrained Pythia-70M"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ruff
+        run: python -m pip install ruff==0.6.9
+      - name: Lint
+        run: ruff check .
+
+  unit-tests:
+    name: unit tests (pytest)
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Run tests
+        run: pytest -q
+
+  secret-scan:
+    name: secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install gitleaks
+        run: |
+          curl -sSfL -o gitleaks.tar.gz \
+            https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz
+          tar -xzf gitleaks.tar.gz gitleaks
+          ./gitleaks version
+      - name: Detect secrets
+        run: ./gitleaks detect --source . --config .gitleaks.toml --redact --no-banner --verbose
+
+  model-evaluation:
+    name: model evaluation (Release asset)
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download model from GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          RELEASE_TAG: final
+        run: |
+          mkdir -p models/v1
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern model.tar.gz --pattern model.sha256 --dir models/v1
+          cd models/v1
+          sha256sum -c model.sha256
+      - name: Install CPU model dependencies
+        run: |
+          python -m pip install --upgrade pip==24.0
+          python -m pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install transformers==4.44.2 tokenizers==0.19.1 safetensors==0.4.5 \
+            huggingface-hub==0.24.6 numpy==1.26.4 PyYAML==6.0.2 requests==2.32.3
+      - name: Generate predictions on validation.jsonl
+        run: |
+          mkdir -p results
+          python training/predict.py --kind student --model models/v1/model.tar.gz \
+            --output results/pred_student_v1.jsonl
+      - name: Score predictions
+        run: |
+          python tools/score.py results/pred_student_v1.jsonl data/validation.jsonl \
+            --out results/score_student_v1.json
+      - name: Upload evaluation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-evaluation
+          path: |
+            results/pred_student_v1.jsonl
+            results/score_student_v1.json
+
+  quality-gate:
+    name: quality gate (json_validity >= 95%)
+    needs: model-evaluation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: model-evaluation
+          path: results
+      - name: Gate
+        run: |
+          python tools/score.py results/pred_student_v1.jsonl data/validation.jsonl \
+            --out results/score_student_v1.json --min-validity 95
+
+  quality-gate-demo:
+    name: quality gate demo (expected failure)
+    if: github.event_name == 'workflow_dispatch' && inputs.bad_model
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install CPU model dependencies
+        run: |
+          python -m pip install --upgrade pip==24.0
+          python -m pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install transformers==4.44.2 tokenizers==0.19.1 safetensors==0.4.5 \
+            huggingface-hub==0.24.6 numpy==1.26.4 PyYAML==6.0.2 requests==2.32.3
+      - name: Evaluate untrained Pythia-70M
+        run: |
+          mkdir -p results
+          python training/predict.py --kind student --model EleutherAI/pythia-70m \
+            --output results/pred_base.jsonl
+      - name: Gate must fail for the untrained model
+        run: |
+          python tools/score.py results/pred_base.jsonl data/validation.jsonl \
+            --out results/score_base.json --min-validity 95

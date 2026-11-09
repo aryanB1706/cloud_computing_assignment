@@ -1,0 +1,13 @@
+# Install the CPU-only PyTorch wheel first to keep the image small:
+#   pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cpu
+# then:
+#   pip install -r training/requirements.txt
+torch==2.4.1
+transformers==4.44.2
+tokenizers==0.19.1
+safetensors==0.4.5
+huggingface-hub==0.24.6
+numpy==1.26.4
+PyYAML==6.0.2
+boto3==1.35.24
+requests==2.32.3

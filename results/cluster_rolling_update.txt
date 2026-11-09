@@ -1,0 +1,7 @@
+NAME                              READY   STATUS        RESTARTS   AGE   IP           NODE                    NOMINATED NODE   READINESS GATES
+command-parser-588f9bdf4b-smqhv   1/1     Terminating   0          31m   10.42.0.8    k3d-kd-cloud-server-0   <none>           <none>
+command-parser-7d844969d7-bbkrv   0/1     Terminating   0          53s   10.42.2.20   k3d-kd-cloud-agent-0    <none>           <none>
+command-parser-7d844969d7-nk68m   1/1     Running       0          73s   10.42.0.9    k3d-kd-cloud-server-0   <none>           <none>
+NAME                              READY   STATUS        RESTARTS   AGE   IP           NODE                    NOMINATED NODE   READINESS GATES
+command-parser-588f9bdf4b-76njf   1/1     Running       0          13s   10.42.0.10   k3d-kd-cloud-server-0   <none>           <none>
+command-parser-7d844969d7-nk68m   1/1     Terminating   0          87s   10.42.0.9    k3d-kd-cloud-server-0   <none>           <none>

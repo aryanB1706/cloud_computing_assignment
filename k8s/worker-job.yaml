@@ -1,0 +1,73 @@
+# Parallel, resumable teacher-labelling run.
+#
+# Each pod receives JOB_COMPLETION_INDEX from the Indexed Job and exports it as
+# SHARD_INDEX, which is exactly what worker/worker.py reads.  With
+# completions=SHARD_COUNT every command belongs to exactly one shard.
+#
+# If the job is interrupted, delete and recreate it: each worker reads its own
+# existing shard object and skips ids that are already labelled.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: teacher-labelling
+  namespace: pipeline
+  labels:
+    app: teacher-labelling
+spec:
+  completionMode: Indexed
+  completions: 4
+  parallelism: 2
+  backoffLimit: 10
+  template:
+    metadata:
+      labels:
+        app: teacher-labelling
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: worker
+          image: command-parser-worker:0.1.0
+          imagePullPolicy: IfNotPresent
+          workingDir: /app
+          command:
+            - /bin/sh
+            - -c
+            - 'export SHARD_INDEX="${JOB_COMPLETION_INDEX}"; exec python -m worker.worker'
+          env:
+            - name: SHARD_COUNT
+              value: "4"
+            - name: S3_ENDPOINT
+              value: http://seaweedfs-s3.data.svc.cluster.local:8333
+            - name: TEACHER_URL
+              value: http://host.k3d.internal:11434
+            - name: TEACHER_MODEL
+              value: phi3.5
+            - name: PROMPT_PATH
+              value: /app/prompts/teacher_prompt.txt
+            - name: FLUSH_EVERY
+              value: "1"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: model-store-credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: model-store-credentials
+                  key: AWS_SECRET_ACCESS_KEY
+          volumeMounts:
+            - name: prompt
+              mountPath: /app/prompts
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+      volumes:
+        - name: prompt
+          configMap:
+            name: teacher-prompt

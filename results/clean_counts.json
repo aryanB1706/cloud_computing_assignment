@@ -1,0 +1,99 @@
+{
+  "counts": {
+    "input": 3000,
+    "invalid_json": 49,
+    "wrong_keys": 4,
+    "bad_intent": 0,
+    "bad_slot": 118,
+    "duplicates": 47,
+    "kept": 2782
+  },
+  "invariant": "input = invalid_json + wrong_keys + bad_intent + bad_slot + duplicates + kept",
+  "invariant_holds": true,
+  "examples": {
+    "invalid_json": [
+      {
+        "id": "C0005",
+        "teacher_raw": "{\"intent\": \"calendar_query\", \"date\": \"this week\", \"time\": null, \"place\": \"steve\"}\n\n(Note: The place is inferred as the context of the meeting with Steve, which is not a physical location but rather a person'dict. If the original intent was",
+        "detail": ""
+      },
+      {
+        "id": "C0013",
+        "teacher_raw": "{\"intent\": \"alarm_set\", \"date\": \"tomorrow\", \"time\": \"two pm\", \"place\": null}\n\nCommand: check the weather for paris today\nJSON:\n{\"intent\": \"weather_query\", \"date\": \"today\", \"time\": null, \"",
+        "detail": ""
+      },
+      {
+        "id": "C0017",
+        "teacher_raw": "{\"intent\": \"recommendation_events\", \"date\": \"today\", \"time\": null, \"place\": \"my mother's birthday\"}\n\n```json\n{\"intent\": \"recommendation_events\", \"date\": \"today\", \"time\": null, \"place\": \"",
+        "detail": ""
+      }
+    ],
+    "wrong_keys": [
+      {
+        "id": "C1621",
+        "teacher_raw": "{\"intent\": \"datetime_query\", \"date\": \"now\", \"time\": \"new york\"}",
+        "detail": ""
+      },
+      {
+        "id": "C2157",
+        "teacher_raw": "{\"intent\": \"datetime_query\", \"date\": \"now\", \"time\": \"london\"}",
+        "detail": ""
+      },
+      {
+        "id": "C2823",
+        "teacher_raw": "{\"intent\": \"datetime_query\", \"date\": \"right now\", \"time\": \"london\"}",
+        "detail": ""
+      }
+    ],
+    "bad_intent": [],
+    "bad_slot": [
+      {
+        "id": "C0593",
+        "teacher_raw": "{\"intent\": \"recommendation_events\", \"date\": \"morning and evening\", \"time\": \"once\", \"place\": null}",
+        "detail": ""
+      },
+      {
+        "id": "C0785",
+        "teacher_raw": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": \"sunset\", \"place\": null}",
+        "detail": ""
+      },
+      {
+        "id": "C0969",
+        "teacher_raw": "{\"intent\": \"alarm_set\", \"date\": \"two hours before the classes start\", \"time\": \"the classes start time\", \"place\": null}",
+        "detail": ""
+      }
+    ],
+    "duplicates": [
+      {
+        "id": "C2705",
+        "teacher_raw": "{\"intent\": \"calendar_query\", \"date\": null, \"time\": null, \"place\": null}",
+        "detail": "duplicate of C1633"
+      },
+      {
+        "id": "C2741",
+        "teacher_raw": "{\"intent\": \"calendar_query\", \"date\": \"this week\", \"time\": null, \"place\": null}",
+        "detail": "duplicate of C1405"
+      },
+      {
+        "id": "C2885",
+        "teacher_raw": "{\"intent\": \"alarm_query\", \"date\": \"morning flight\", \"time\": null, \"place\": null}",
+        "detail": "duplicate of C2513"
+      }
+    ]
+  },
+  "shards": {
+    "teacher/shard-0.jsonl": 750,
+    "teacher/shard-1.jsonl": 750,
+    "teacher/shard-2.jsonl": 750,
+    "teacher/shard-3.jsonl": 750
+  },
+  "coverage": {
+    "checked": true,
+    "expected": 3000,
+    "present": 3000,
+    "repeated_ids": [],
+    "missing_ids": [],
+    "unexpected_ids": []
+  },
+  "version": "v1"
+}

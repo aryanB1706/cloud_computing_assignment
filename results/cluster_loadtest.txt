@@ -1,0 +1,10 @@
+
+Successful requests by header:
+{
+  "per_replica": {
+    "command-parser-588f9bdf4b-5vfln": 77
+  },
+  "per_model_version": {
+    "v1": 77
+  }
+}

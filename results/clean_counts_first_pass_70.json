@@ -1,0 +1,70 @@
+{
+  "counts": {
+    "input": 70,
+    "invalid_json": 34,
+    "wrong_keys": 0,
+    "bad_intent": 0,
+    "bad_slot": 0,
+    "duplicates": 0,
+    "kept": 36
+  },
+  "invariant": "input = invalid_json + wrong_keys + bad_intent + bad_slot + duplicates + kept",
+  "invariant_holds": true,
+  "examples": {
+    "invalid_json": [
+      {
+        "id": "C0005",
+        "teacher_raw": "{\"intent\": \"calendar_query\", \"date\": \"this week\", \"time\": null, \"place\": \"steve\"}\n\n(Note: The place is inferred as the context of the meeting with Steve, which is not a physical location but rather a person'dict. If the original intent was",
+        "detail": ""
+      },
+      {
+        "id": "C0013",
+        "teacher_raw": "{\"intent\": \"alarm_set\", \"date\": \"tomorrow\", \"time\": \"two pm\", \"place\": null}\n\nCommand: check the weather for paris today\nJSON:\n{\"intent\": \"weather_query\", \"date\": \"today\", \"time\": null, \"",
+        "detail": ""
+      },
+      {
+        "id": "C0017",
+        "teacher_raw": "{\"intent\": \"recommendation_events\", \"date\": \"today\", \"time\": null, \"place\": \"my mother's birthday\"}\n\n```json\n{\"intent\": \"recommendation_events\", \"date\": \"today\", \"time\": null, \"place\": \"",
+        "detail": ""
+      }
+    ],
+    "wrong_keys": [],
+    "bad_intent": [],
+    "bad_slot": [],
+    "duplicates": []
+  },
+  "shards": {
+    "teacher/shard-0.jsonl": 50,
+    "teacher/shard-1.jsonl": 20
+  },
+  "coverage": {
+    "checked": true,
+    "expected": 3000,
+    "present": 70,
+    "repeated_ids": [],
+    "missing_ids": [
+      "C0003",
+      "C0004",
+      "C0007",
+      "C0008",
+      "C0011",
+      "C0012",
+      "C0015",
+      "C0016",
+      "C0019",
+      "C0020",
+      "C0023",
+      "C0024",
+      "C0027",
+      "C0028",
+      "C0031",
+      "C0032",
+      "C0035",
+      "C0036",
+      "C0039",
+      "C0040"
+    ],
+    "unexpected_ids": []
+  },
+  "version": "v1"
+}

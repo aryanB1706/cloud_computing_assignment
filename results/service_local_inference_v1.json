@@ -1,0 +1,25 @@
+{
+  "url": "http://127.0.0.1:8000",
+  "requests": 50,
+  "elapsed_s": 14.767,
+  "throughput_rps": 3.386,
+  "p50_ms": 267.48,
+  "p95_ms": 406.08,
+  "mean_ms": 294.99,
+  "max_ms": 579.83,
+  "errors": 0,
+  "error_rate_percent": 0.0,
+  "status_counts": {
+    "200": 50
+  },
+  "served_by": {
+    "local-service": 50
+  },
+  "model_versions": {
+    "v1": 50
+  },
+  "peak_rss_mib": 546.8,
+  "peak_cpu_percent": 0.0,
+  "mean_cpu_percent": 0.0,
+  "failures": []
+}

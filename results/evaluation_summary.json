@@ -1,0 +1,42 @@
+{
+  "teacher": {
+    "json_validity": 99.0,
+    "intent_accuracy": 74.0,
+    "date_accuracy": 74.0,
+    "time_accuracy": 87.0,
+    "place_accuracy": 79.0,
+    "full_frame": 40.0,
+    "examples": 100,
+    "missing_predictions": 0
+  },
+  "untrained_pythia": {
+    "json_validity": 0.0,
+    "intent_accuracy": 0.0,
+    "date_accuracy": 0.0,
+    "time_accuracy": 0.0,
+    "place_accuracy": 0.0,
+    "full_frame": 0.0,
+    "examples": 100,
+    "missing_predictions": 0
+  },
+  "student_v1": {
+    "json_validity": 99.0,
+    "intent_accuracy": 68.0,
+    "date_accuracy": 75.0,
+    "time_accuracy": 89.0,
+    "place_accuracy": 75.0,
+    "full_frame": 35.0,
+    "examples": 100,
+    "missing_predictions": 0
+  },
+  "student_v2": {
+    "json_validity": 100.0,
+    "intent_accuracy": 71.0,
+    "date_accuracy": 76.0,
+    "time_accuracy": 89.0,
+    "place_accuracy": 77.0,
+    "full_frame": 38.0,
+    "examples": 100,
+    "missing_predictions": 0
+  }
+}

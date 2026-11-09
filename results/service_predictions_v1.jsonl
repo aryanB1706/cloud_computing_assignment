@@ -1,0 +1,50 @@
+{"id": "L001", "prediction": "{\"intent\": \"calendar_remove\", \"date\": null, \"time\": null, \"place\": null}"}
+{"id": "L002", "prediction": "{\"intent\": \"alarm_set\", \"date\": \"sunday\", \"time\": \"five in the morning\", \"place\": null}"}
+{"id": "L003", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": \"washington\", \"place\": null}"}
+{"id": "L004", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": \"mondays\", \"place\": null}"}
+{"id": "L005", "prediction": "{\"intent\": \"alarm_set\", \"date\": \"tuesday\", \"time\": \"six pm\", \"place\": null}"}
+{"id": "L006", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"this afternoon\", \"time\": null, \"place\": null}"}
+{"id": "L007", "prediction": "{\"intent\": \"datetime_query\", \"date\": \"the week\", \"time\": null, \"place\": null}"}
+{"id": "L008", "prediction": "{\"intent\": \"calendar_query\", \"date\": \"this weekend\", \"time\": null, \"place\": null}"}
+{"id": "L009", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": null, \"place\": \"central time zone\"}"}
+{"id": "L010", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": null, \"place\": null}"}
+{"id": "L011", "prediction": "{\"intent\": \"weather_query\", \"date\": \"this week\", \"time\": null, \"place\": null}"}
+{"id": "L012", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": \"pst\", \"place\": \"pst\"}"}
+{"id": "L013", "prediction": "{\"intent\": \"recommendation_events\", \"date\": null, \"time\": null, \"place\": \"the area\"}"}
+{"id": "L014", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"this afternoon\", \"time\": null, \"place\": null}"}
+{"id": "L015", "prediction": "{\"intent\": \"calendar_remove\", \"date\": \"today\", \"time\": null, \"place\": null}"}
+{"id": "L016", "prediction": "{\"intent\": \"calendar_query\", \"date\": null, \"time\": null, \"place\": null}"}
+{"id": "L017", "prediction": "{\"intent\": \"alarm_set\", \"date\": \"this time\", \"time\": null, \"place\": null}"}
+{"id": "L018", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"tomorrow\", \"time\": \"before\", \"place\": null}"}
+{"id": "L019", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": null, \"place\": null}"}
+{"id": "L020", "prediction": "{\"intent\": \"weather_query\", \"date\": null, \"time\": null, \"place\": \"our city\"}"}
+{"id": "L021", "prediction": "{\"intent\": \"recommendation_events\", \"date\": null, \"time\": null, \"place\": \"meeting me\"}"}
+{"id": "L022", "prediction": "{\"intent\": \"recommendation_events\", \"date\": null, \"time\": null, \"place\": null}"}
+{"id": "L023", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"every june third\", \"time\": null, \"place\": null}"}
+{"id": "L024", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": null, \"place\": \"school play\"}"}
+{"id": "L025", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": null, \"place\": \"new york\"}"}
+{"id": "L026", "prediction": "{\"intent\": \"weather_query\", \"date\": null, \"time\": null, \"place\": \"new york city\"}"}
+{"id": "L027", "prediction": "{\"intent\": \"calendar_query\", \"date\": \"today\", \"time\": null, \"place\": null}"}
+{"id": "L028", "prediction": "{\"intent\": \"weather_query\", \"date\": null, \"time\": \"home\", \"place\": \"home\"}"}
+{"id": "L029", "prediction": "{\"intent\": \"alarm_query\", \"date\": \"now\", \"time\": null, \"place\": null}"}
+{"id": "L030", "prediction": "{\"intent\": \"alarm_set\", \"date\": null, \"time\": \"ten am\", \"place\": null}"}
+{"id": "L031", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"today\", \"time\": null, \"place\": null}"}
+{"id": "L032", "prediction": "{\"intent\": \"datetime_query\", \"date\": \"this year\", \"time\": null, \"place\": null}"}
+{"id": "L033", "prediction": "{\"intent\": \"alarm_set\", \"date\": \"next tuesday\", \"time\": \"eight hundred am\", \"place\": null}"}
+{"id": "L034", "prediction": "{\"intent\": \"recommendation_events\", \"date\": null, \"time\": null, \"place\": null}"}
+{"id": "L035", "prediction": "{\"intent\": \"alarm_set\", \"date\": \"today\", \"time\": null, \"place\": null}"}
+{"id": "L036", "prediction": "{\"intent\": \"alarm_set\", \"date\": null, \"time\": \"seven am\", \"place\": null}"}
+{"id": "L037", "prediction": "{\"intent\": \"calendar_set\", \"date\": \"tomorrow\", \"time\": \"seven\", \"place\": null}"}
+{"id": "L038", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"monday\", \"time\": \"six\", \"place\": \"monday\"}"}
+{"id": "L039", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"yesterday\", \"time\": null, \"place\": \"washington\"}"}
+{"id": "L040", "prediction": "{\"intent\": \"alarm_set\", \"date\": null, \"time\": \"an hour\", \"place\": null}"}
+{"id": "L041", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": null, \"place\": \"california\"}"}
+{"id": "L042", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": null, \"place\": \"beijing\"}"}
+{"id": "L043", "prediction": "{\"intent\": \"alarm_set\", \"date\": null, \"time\": null, \"place\": null}"}
+{"id": "L044", "prediction": "{\"intent\": \"datetime_query\", \"date\": \"fifteenth\", \"time\": null, \"place\": null}"}
+{"id": "L045", "prediction": "{\"intent\": \"alarm_set\", \"date\": \"next tuesdays\", \"time\": null, \"place\": null}"}
+{"id": "L046", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"this friday\", \"time\": null, \"place\": \"meeting this friday\"}"}
+{"id": "L047", "prediction": "{\"intent\": \"datetime_query\", \"date\": null, \"time\": null, \"place\": null}"}
+{"id": "L048", "prediction": "{\"intent\": \"calendar_remove\", \"date\": \"one pm\", \"time\": \"one pm\", \"place\": null}"}
+{"id": "L049", "prediction": "{\"intent\": \"recommendation_events\", \"date\": \"the first of january\", \"time\": null, \"place\": null}"}
+{"id": "L050", "prediction": "{\"intent\": \"calendar_set\", \"date\": \"today\", \"time\": \"one pm\", \"place\": \"my calendar\"}"}
